@@ -20,7 +20,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem("lang", lang);
   }, []);
 
-  const t = translations[language];
+  const t = translations[language] as unknown as Translations;
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>
