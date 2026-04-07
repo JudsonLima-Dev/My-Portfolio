@@ -3,32 +3,37 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
-import DataEntry from "./pages/DataEntry.tsx";
-import InternetResearch from "./pages/InternetResearch.tsx";
-import ContentCreation from "./pages/ContentCreation.tsx";
-import EmailSupport from "./pages/EmailSupport.tsx";
-import VirtualAssistance from "./pages/VirtualAssistance.tsx";
+import { LanguageProvider } from "@/i18n/LanguageContext";
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import DataEntry from "./pages/DataEntry";
+import InternetResearch from "./pages/InternetResearch";
+import ContentCreation from "./pages/ContentCreation";
+import EmailSupport from "./pages/EmailSupport";
+import VirtualAssistance from "./pages/VirtualAssistance";
+import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/data-entry" element={<DataEntry />} />
-          <Route path="/research" element={<InternetResearch />} />
-          <Route path="/content" element={<ContentCreation />} />
-          <Route path="/email-support" element={<EmailSupport />} />
-          <Route path="/virtual-assistance" element={<VirtualAssistance />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <LanguageProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/data-entry" element={<DataEntry />} />
+            <Route path="/research" element={<InternetResearch />} />
+            <Route path="/content" element={<ContentCreation />} />
+            <Route path="/email-support" element={<EmailSupport />} />
+            <Route path="/virtual-assistance" element={<VirtualAssistance />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
