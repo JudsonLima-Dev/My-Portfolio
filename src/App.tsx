@@ -15,13 +15,15 @@ import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
+const basename = import.meta.env.BASE_URL.startsWith("/") ? import.meta.env.BASE_URL : undefined;
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
