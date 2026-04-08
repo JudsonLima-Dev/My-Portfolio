@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,15 +15,13 @@ import About from "./pages/About";
 
 const queryClient = new QueryClient();
 
-const basename = import.meta.env.BASE_URL.startsWith("/") ? import.meta.env.BASE_URL : undefined;
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <LanguageProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={basename}>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
@@ -34,7 +32,7 @@ const App = () => (
             <Route path="/virtual-assistance" element={<VirtualAssistance />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </LanguageProvider>
     </TooltipProvider>
   </QueryClientProvider>
